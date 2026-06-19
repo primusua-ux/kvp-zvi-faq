@@ -1,0 +1,17 @@
+# System files
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.suo
+*.ntvsca
+*.ntvs_analysisfiles
+*.njsproj
+*.sln
+
+# Temporary files
+*.log
+*.tmp
