@@ -207,9 +207,20 @@ function renderFAQ() {
         questionBtn.addEventListener("click", () => {
             const isActive = faqItem.classList.contains("active");
             
-            // Close other active items
+            // Calculate height change of elements above the clicked one before closing them
+            let offsetHeightAdjustment = 0;
+            const header = document.querySelector(".main-header");
+            const headerHeight = header ? header.offsetHeight : 0;
+            const margin = 16; // 16px breathing margin
+
             document.querySelectorAll(".faq-item.active").forEach(activeItem => {
                 if (activeItem !== faqItem) {
+                    // Check if the active item is above the clicked item
+                    if (activeItem.getBoundingClientRect().top < faqItem.getBoundingClientRect().top) {
+                        offsetHeightAdjustment += activeItem.querySelector(".faq-answer-wrapper").scrollHeight;
+                    }
+                    
+                    // Close the active item
                     activeItem.classList.remove("active");
                     activeItem.querySelector(".faq-question-btn").setAttribute("aria-expanded", "false");
                     activeItem.querySelector(".faq-answer-wrapper").style.height = "0";
@@ -225,6 +236,15 @@ function renderFAQ() {
                 questionBtn.setAttribute("aria-expanded", "true");
                 const contentHeight = faqItem.querySelector(".faq-answer-content").scrollHeight;
                 answerWrapper.style.height = `${contentHeight}px`;
+
+                // Scroll to the final position of the element (adjusting for collapsed items above and header height)
+                const elementPosition = faqItem.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - offsetHeightAdjustment - headerHeight - margin;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
             }
         });
 
