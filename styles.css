@@ -639,7 +639,7 @@ body {
     height: 20px;
     flex-shrink: 0;
     color: var(--color-text-muted);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s;
 }
 
 .faq-item.active .faq-toggle-icon {
@@ -651,7 +651,7 @@ body {
     /* Height animated via JS */
     height: 0;
     overflow: hidden;
-    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .faq-answer-content {
