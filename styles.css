@@ -962,6 +962,17 @@ body {
     color: var(--color-gold);
 }
 
+.footer-info a {
+    color: var(--color-text-regular);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-info a:hover {
+    color: var(--color-gold);
+    text-decoration: underline;
+}
+
 .footer-copyright {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding-top: 20px;
