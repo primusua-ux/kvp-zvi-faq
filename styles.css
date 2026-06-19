@@ -1177,14 +1177,14 @@ body {
     }
     
     .print-header-only h3 {
-        font-size: 16pt;
+        font-size: 12pt;
         font-weight: 700;
         margin-bottom: 4px;
         text-transform: uppercase;
     }
     
     .print-header-only h4 {
-        font-size: 13pt;
+        font-size: 11pt;
         font-weight: 600;
         margin-bottom: 10px;
     }
