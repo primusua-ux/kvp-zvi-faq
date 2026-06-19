@@ -29,6 +29,16 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'UAF Sans';
+    src: local('UAF Sans SemiBold'), local('UAFSans-SemiBold'),
+         url('fonts/UAFSans-SemiBold.woff2') format('woff2'),
+         url('fonts/UAFSans-SemiBold.woff') format('woff'),
+         url('fonts/UAFSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
 :root {
     --color-bg-dark: #0f1110;
     --color-bg-light: #171a18;
