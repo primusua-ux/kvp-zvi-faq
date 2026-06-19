@@ -1090,6 +1090,10 @@ body {
 
 /* PRINT MEDIA STYLES - Crucial for document checklist printing */
 @media print {
+    @page {
+        margin: 20mm 20mm 20mm 30mm;
+    }
+
     /* Hide everything that isn't the checklist card */
     body {
         background: #ffffff !important;
