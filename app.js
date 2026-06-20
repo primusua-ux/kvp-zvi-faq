@@ -103,21 +103,21 @@ const faqData = [
     },
     {
         id: "faq-10",
-        category: "education",
+        category: "payment",
         question: "Чи є навчання на військовій кафедрі безкоштовним (бюджет)?",
         answer: `<p><strong>Ні.</strong> Навчання на кафедрі здійснюється виключно на платній основі — за рахунок коштів фізичних чи юридичних осіб (за контрактом). Вартість навчання фіксується у контракті і складає <strong>44 800 грн. за всю програму підготовки</strong>.</p>
         <p>Вартість навчання покриває, у тому числі, проживання, харчування, спорядження та медичне забезпечення під час навчального збору. Окремо вступник забезпечує лише власну польову форму одягу (&laquo;піксель&raquo; ЗСУ), з якою необхідно прибути на навчальний збір.</p>`
     },
     {
         id: "faq-10b",
-        category: "education",
+        category: "payment",
         question: "Коли і в які строки потрібно сплатити за навчання?",
         answer: `<p>Оплата за навчання вноситься протягом <strong>двох тижнів</strong> після видання наказу начальника Військового інституту про зарахування на навчання за програмою підготовки офіцерів запасу.</p>
         <p>Оплата здійснюється за реквізитами, які надає інститут разом із повідомленням про зарахування.</p>`
     },
     {
         id: "faq-10c",
-        category: "education",
+        category: "payment",
         question: "Чи повертаються кошти, якщо я припиню навчання або буду відрахований?",
         answer: `<p><strong>Ні.</strong> У разі відрахування за академічну заборгованість або добровільного припинення навчання кошти за навчання не повертаються. Ці умови передбачені контрактом на навчання.</p>`
     },
@@ -138,7 +138,7 @@ const faqData = [
     },
     {
         id: "faq-11c",
-        category: "education",
+        category: "payment",
         question: "Звідки взяти бланк контракту і як його подати?",
         answer: `<p>Бланк контракту надається разом із направленням на військово-лікарську комісію. Його необхідно заповнити зі свого боку у <strong>двох примірниках</strong> і надіслати в інститут разом із довідкою про проходження ВЛК.</p>`
     },
@@ -160,13 +160,13 @@ const faqData = [
     },
     {
         id: "faq-14",
-        category: "oath",
+        category: "general",
         question: "Чи дає навчання на кафедрі відстрочку від мобілізації?",
         answer: `<p><strong>Ні.</strong> Сам по собі факт навчання на кафедрі за програмою підготовки офіцерів запасу не є підставою для відстрочки від мобілізації відповідно до Закону України &laquo;Про мобілізаційну підготовку та мобілізацію&raquo;.</p>`
     },
     {
         id: "faq-15",
-        category: "oath",
+        category: "general",
         question: "Чи можуть мобілізувати під час навчання або після присвоєння звання?",
         answer: `<p>Статус офіцера запасу не звільняє від військового обов'язку. Після зарахування в запас особа перебуває на військовому обліку і може бути призвана за мобілізацією на загальних підставах, <strong>вже як офіцер</strong>.</p>`
     }
@@ -196,6 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initSearch();
     initChecklist();
     initPrint();
+    generateFAQSchema();
+    initBackToTop();
 });
 
 // Render FAQ items based on search and category filters
@@ -396,6 +398,42 @@ function initChecklist() {
             const docId = checkbox.getAttribute("data-id");
             localStorage.removeItem(docId);
         });
+    });
+}
+
+// Generate FAQPage schema.org JSON-LD and inject into <head>
+function generateFAQSchema() {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map(item => ({
+            "@type": "Question",
+            "name": item.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
+            }
+        }))
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+}
+
+// Back-to-top button
+function initBackToTop() {
+    const btn = document.getElementById('back-to-top');
+    if (!btn) return;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    });
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
