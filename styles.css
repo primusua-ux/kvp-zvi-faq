@@ -728,6 +728,17 @@ body {
     color: var(--color-gold-light);
 }
 
+.faq-answer-content a {
+    color: var(--color-gold-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.faq-answer-content a:hover {
+    opacity: 0.8;
+}
+
 /* Loading, No Results, and Highlight states */
 .loading-state {
     padding: 40px;
