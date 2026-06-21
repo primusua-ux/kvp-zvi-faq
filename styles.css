@@ -1128,19 +1128,34 @@ body {
         text-align: center;
     }
     
+    .main-header {
+        padding: 10px 0;
+    }
+
     .header-container {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        text-align: left;
     }
-    
+
     .logo-area {
-        flex-direction: column;
-        gap: 8px;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
     }
-    
+
+    /* Приховати лого та другорядний текст на мобільному */
+    .institute-logo,
+    .inst-sub,
+    .inst-program {
+        display: none;
+    }
+
     .inst-main {
-        font-size: 18px;
+        font-size: 15px;
+        line-height: 1.2;
     }
 }
 
