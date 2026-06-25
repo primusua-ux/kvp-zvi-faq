@@ -804,7 +804,22 @@ body {
 .checklist-desc {
     font-size: 14px;
     color: var(--color-text-muted);
+    margin-bottom: 16px;
+}
+
+.checklist-copy-reqs {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    background: rgba(212, 175, 55, 0.05);
+    border-left: 3px solid var(--color-gold-dark, rgba(212, 175, 55, 0.5));
+    padding: 12px 14px;
     margin-bottom: 24px;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.45;
+}
+
+.checklist-copy-reqs strong {
+    color: var(--color-gold-light);
 }
 
 .checklist-items {
