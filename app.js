@@ -72,7 +72,7 @@ const faqData = [
     {
         id: "faq-7",
         category: "vlk",
-        question: "Як проходить військово-лікарська комісія (ВЛК) і де отримати направлення?",
+        question: "Як проходить військово-лікарська комісія (ВЛК) і де отримати направлення? <span style=\"font-weight: 400; font-size: 0.9em; opacity: 0.85; display: inline-block;\">(військовослужбовцям не потрібно)</span>",
         answer: `<p>Процедура проходження медичної комісії наступна:</p>
         <ol>
             <li>Після повного проходження всіх етапів вступу на <a href="https://sites.google.com/view/kvpzvi/" class="step-link" target="_blank" rel="noopener">сайті вступу</a> ми надаємо вам направлення на проходження ВЛК;</li>
