@@ -1415,3 +1415,24 @@ body {
     border-color: var(--color-gold);
     box-shadow: 0 0 30px rgba(197, 160, 40, 0.22), 0 10px 25px -5px rgba(0, 0, 0, 0.6);
 }
+
+/* Accented FAQ Item (for civilian algorithm - olive theme) */
+.faq-item.faq-item-accented-olive {
+    border-left: 4px solid var(--color-olive-light, #526b4a);
+    border-color: rgba(82, 107, 74, 0.25);
+    background: rgba(22, 26, 24, 0.85);
+}
+
+.faq-item.faq-item-accented-olive .faq-question-btn {
+    color: #a7cda0; /* Light olive-green, highly readable and premium */
+}
+
+.faq-item.faq-item-accented-olive:hover {
+    border-color: rgba(82, 107, 74, 0.5);
+    box-shadow: 0 0 25px rgba(82, 107, 74, 0.12), 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.faq-item.faq-item-accented-olive.active {
+    border-color: var(--color-olive-light, #526b4a);
+    box-shadow: 0 0 30px rgba(82, 107, 74, 0.22), 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+}

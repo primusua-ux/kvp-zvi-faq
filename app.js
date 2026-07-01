@@ -73,6 +73,23 @@ const faqData = [
         </ol>`
     },
     {
+        id: "faq-civilian-algorithm",
+        category: "general",
+        question: "Який алгоритм і послідовність дій цивільних громадян для вступу на навчання за цією програмою підготовки офіцерів?",
+        answer: `<p>Для вступу на навчання цивільним громадянам необхідно виконати такі кроки:</p>
+        <ol>
+            <li>Зробіть <strong>фото документів</strong>: паспорта, довідки про присвоєння РНОКПП (ІПН), витягу з реєстру про реєстрацію місця проживання, військово-облікового документа, диплома про вищу освіту та <a href="https://drive.google.com/file/d/1Yym-JCw6i1rxdT6noPYb9gsBlGHCcDkY/view?usp=sharing" target="_blank" rel="noopener">заяви</a> на вступ, написаної від руки;</li>
+            <li>Створити <strong>електронний документ .docx</strong>, у який вставити фотографії всіх вищезазначених документів (паспорт, код, реєстрація, військово-обліковий документ, диплом, заява). Назва документа має бути ПІБ_дата_народження.docx (наприклад, <code>Коваленко_Степан_Петрович_12051985.docx</code>);</li>
+            <li>Пройти <strong>реєстрацію</strong> на сайті вступу, де обрати ВОС та прикріпити створений файл;</li>
+            <li>Пройти <strong>психологічне тестування</strong> (три методики);</li>
+            <li>Пройти <strong>тестування з предмета &quot;Захист України&quot;</strong> (тільки ті, у кого немає досвіду служби);</li>
+            <li>Отримати <strong>направлення на ВЛК</strong> (прийде Новою поштою разом з контрактами на навчання);</li>
+            <li>Пройти <strong>ВЛК</strong> та заповнити <strong>контракти</strong>;</li>
+            <li>Відправити <strong>документи</strong> (з переліку для особової справи) на відділення Нової пошти №10 у м. Житомирі (контактний телефон: <a href="tel:+380672807940">067 280 79 40</a>);</li>
+            <li>Отримати <strong>підтвердження зарахування</strong> та оплатити навчання за наданими реквізитами.</li>
+        </ol>`
+    },
+    {
         id: "faq-11",
         category: "education",
         question: "Чи можна поєднувати навчання на військовій кафедрі з роботою чи зі службою?",
@@ -298,7 +315,13 @@ function renderFAQ() {
 
     filteredData.forEach(item => {
         const faqItem = document.createElement("div");
-        faqItem.className = "faq-item" + (item.id === "faq-military-algorithm" ? " faq-item-accented" : "");
+        let accentClass = "";
+        if (item.id === "faq-military-algorithm") {
+            accentClass = " faq-item-accented";
+        } else if (item.id === "faq-civilian-algorithm") {
+            accentClass = " faq-item-accented-olive";
+        }
+        faqItem.className = "faq-item" + accentClass;
         faqItem.id = item.id;
 
         // Apply highlighting to text if search query exists
