@@ -1394,3 +1394,24 @@ body {
     font-size: 0.95em;
     letter-spacing: 0.5px;
 }
+
+/* Accented FAQ Item (for military algorithm) */
+.faq-item.faq-item-accented {
+    border-left: 4px solid var(--color-gold);
+    border-color: rgba(197, 160, 40, 0.25);
+    background: rgba(22, 26, 24, 0.85);
+}
+
+.faq-item.faq-item-accented .faq-question-btn {
+    color: var(--color-gold-light);
+}
+
+.faq-item.faq-item-accented:hover {
+    border-color: rgba(197, 160, 40, 0.5);
+    box-shadow: 0 0 25px rgba(197, 160, 40, 0.12), 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.faq-item.faq-item-accented.active {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 30px rgba(197, 160, 40, 0.22), 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+}

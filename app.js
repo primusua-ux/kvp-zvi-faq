@@ -298,7 +298,7 @@ function renderFAQ() {
 
     filteredData.forEach(item => {
         const faqItem = document.createElement("div");
-        faqItem.className = "faq-item";
+        faqItem.className = "faq-item" + (item.id === "faq-military-algorithm" ? " faq-item-accented" : "");
         faqItem.id = item.id;
 
         // Apply highlighting to text if search query exists
