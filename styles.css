@@ -1358,3 +1358,39 @@ body {
         height: 44px;
     }
 }
+
+/* VOS FAQ Table Styling */
+.faq-vos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.faq-vos-table th, .faq-vos-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.faq-vos-table th {
+    font-weight: 600;
+    color: var(--color-text-muted);
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 2px solid var(--color-gold-dark, rgba(212, 175, 55, 0.35));
+}
+
+.faq-vos-table tr:last-child td {
+    border-bottom: none;
+}
+
+.faq-vos-table td strong {
+    color: var(--color-gold-light);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.95em;
+    letter-spacing: 0.5px;
+}
