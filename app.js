@@ -294,6 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initPrint();
     generateFAQSchema();
     initBackToTop();
+    handleHashLinks();
 });
 
 // Render FAQ items based on search and category filters
@@ -551,4 +552,59 @@ function initPrint() {
         // Open print dialogue
         window.print();
     });
+}
+
+// Handle hash links pointing to FAQ items
+function handleHashLinks() {
+    const handleHash = () => {
+        const hash = window.location.hash;
+        if (hash && hash.startsWith('#faq-')) {
+            const targetId = hash.substring(1);
+            const targetItem = document.getElementById(targetId);
+            if (targetItem) {
+                // Find item category
+                const itemData = faqData.find(item => item.id === targetId);
+                if (itemData && currentCategory !== "all" && itemData.category !== currentCategory) {
+                    // Switch to the correct category or "all"
+                    const tabBtn = document.querySelector(`.category-btn[data-category="${itemData.category}"]`) || 
+                                   document.querySelector('.category-btn[data-category="all"]');
+                    if (tabBtn) {
+                        tabBtn.click();
+                    }
+                }
+                
+                // If search query is active and filters out our item, clear it
+                if (searchQuery !== "") {
+                    const searchInput = document.getElementById("faq-search");
+                    if (searchInput) {
+                        searchInput.value = "";
+                        searchQuery = "";
+                        renderFAQ();
+                    }
+                }
+
+                // Expand the item
+                const questionBtn = targetItem.querySelector('.faq-question-btn');
+                if (questionBtn && !targetItem.classList.contains('active')) {
+                    questionBtn.click();
+                } else if (questionBtn) {
+                    // Already expanded, just scroll to it
+                    const header = document.querySelector(".main-header");
+                    const headerHeight = header ? header.offsetHeight : 0;
+                    const margin = 16;
+                    const elementPosition = targetItem.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight - margin;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            }
+        }
+    };
+
+    window.addEventListener('hashchange', handleHash);
+    
+    // Check hash on page load after components render
+    setTimeout(handleHash, 400);
 }
