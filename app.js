@@ -73,7 +73,7 @@ const faqData = [
             <li>Пройти <strong>психологічне тестування</strong> (три методики);</li>
             <li>Тестування <strong>&quot;Захист України&quot;</strong> військовослужбовцям проходити <strong>не треба</strong>;</li>
             <li>Отримати <strong>контракт на навчання</strong> у 2-х примірниках (прийде Новою поштою);</li>
-            <li>Заповнити <strong>контракти</strong>;</li>
+            <li>Заповнити <strong>контракти</strong> (<a href="https://drive.google.com/file/d/1fpKGmA_ftcMRENMNiIEcolr5iVj8Au7a/view?usp=drive_link" target="_blank" rel="noopener">зразок заповнення</a>);</li>
             <li>Відправити <strong>обидва екземпляри контракту</strong> на навчання разом із <strong>заявою на вступ</strong> і <strong>роздрукованими копіями документів</strong> (рапорт, військовий квиток, диплом про вищу освіту) на відділення Нової пошти №10 у м. Житомирі (контактний телефон: <a href="tel:+380672807940">067 280 79 40</a>);</li>
             <li>Отримати <strong>підтвердження зарахування</strong> та <strong>оплатити навчання</strong> за наданими реквізитами.</li>
         </ol>`
@@ -90,7 +90,7 @@ const faqData = [
             <li>Пройти <strong>психологічне тестування</strong> (три методики);</li>
             <li>Пройти <strong>тестування з предмета &quot;Захист України&quot;</strong> (тільки ті, у кого немає досвіду служби);</li>
             <li>Отримати <strong>направлення на ВЛК</strong> (прийде Новою поштою разом з контрактами на навчання);</li>
-            <li>Пройти <strong>ВЛК</strong> та заповнити <strong>контракти</strong>;</li>
+            <li>Пройти <strong>ВЛК</strong> та заповнити <strong>контракти</strong> (<a href="https://drive.google.com/file/d/1fpKGmA_ftcMRENMNiIEcolr5iVj8Au7a/view?usp=drive_link" target="_blank" rel="noopener">зразок заповнення</a>);</li>
             <li>Відправити <strong>документи</strong> (з переліку для особової справи) на відділення Нової пошти №10 у м. Житомирі (контактний телефон: <a href="tel:+380672807940">067 280 79 40</a>);</li>
             <li>Отримати <strong>підтвердження зарахування</strong> та оплатити навчання за наданими реквізитами.</li>
         </ol>`
