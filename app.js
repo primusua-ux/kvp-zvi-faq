@@ -64,7 +64,7 @@ const faqData = [
             <li>Написати <strong>рапорт</strong> на ім'я командира своєї військової частини відповідно до <a href="https://drive.google.com/file/d/1LXUsQayZomRSRa2Fzpyzhj5UBUxBMrla/view" target="_blank" rel="noopener">зразка</a>;</li>
             <li>Рапорт має бути зареєстрований і на ньому має бути <strong>резолюція командира</strong> з дозволом на навчання;</li>
             <li>Зробити <strong>фото цього рапорта</strong> з дозволом командира;</li>
-            <li>Написати <strong>заяву на вступ</strong> на навчання на ім'я голови відбіркової комісії відповідно до <a href="https://drive.google.com/file/d/15nOhUpsjAf81dUS7xF75c2ZgN5Jlo5-z/view?usp=sharing" target="_blank" rel="noopener">зразка</a>;</li>
+            <li>Власноруч написати <strong>заяву на вступ</strong> на навчання на ім'я голови відбіркової комісії відповідно до <a href="https://drive.google.com/file/d/15nOhUpsjAf81dUS7xF75c2ZgN5Jlo5-z/view?usp=sharing" target="_blank" rel="noopener">зразка</a>;</li>
             <li>Зробити <strong>фото цієї заяви</strong>;</li>
             <li>Зробити <strong>фото військового квитка</strong> (сторінки з фото, військовою частиною, де проходите службу, посадою, військовим званням);</li>
             <li>Зробити <strong>фото диплома</strong> про вищу освіту або <strong>довідки ЄДЕБО</strong>, якщо ви ще навчаєтесь (бакалавр або вище);</li>
