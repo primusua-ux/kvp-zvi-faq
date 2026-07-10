@@ -91,7 +91,7 @@ const faqData = [
             <li>Пройти <strong>тестування з предмета &quot;Захист України&quot;</strong> (тільки ті, у кого немає досвіду служби);</li>
             <li>Отримати <strong>направлення на ВЛК</strong> (прийде Новою поштою разом з контрактами на навчання);</li>
             <li>Пройти <strong>ВЛК</strong> та заповнити <strong>контракти</strong> (<a href="https://drive.google.com/file/d/1fpKGmA_ftcMRENMNiIEcolr5iVj8Au7a/view?usp=drive_link" target="_blank" rel="noopener">зразок заповнення</a>);</li>
-            <li>Відправити <strong>документи</strong> (з переліку для особової справи) на відділення Нової пошти №10 у м. Житомирі (контактний телефон: <a href="tel:+380672807940">067 280 79 40</a>);</li>
+            <li>Відправити <a href="#faq-5" style="color: var(--color-gold-light); text-decoration: underline;"><strong>документи</strong></a> (з переліку для особової справи) на відділення Нової пошти №10 у м. Житомирі (контактний телефон: <a href="tel:+380672807940">067 280 79 40</a>);</li>
             <li>Отримати <strong>підтвердження зарахування</strong> та оплатити навчання за наданими реквізитами.</li>
         </ol>`
     },
