@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/primusua-ux/kvp-zvi-faq#readme",
   "dependencies": {
-    "@google/generative-ai": "^0.24.1"
+    "@google/genai": "^2.11.0"
   }
 }

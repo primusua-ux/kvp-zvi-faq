@@ -1,4 +1,4 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 const fs = require('fs');
 const path = require('path');
 
@@ -10,13 +10,8 @@ exports.handler = async (event, context) => {
         'Access-Control-Allow-Methods': 'POST, OPTIONS'
     };
 
-    // Handle preflight OPTIONS request
     if (event.httpMethod === 'OPTIONS') {
-        return {
-            statusCode: 200,
-            headers,
-            body: ''
-        };
+        return { statusCode: 200, headers, body: '' };
     }
 
     if (event.httpMethod !== 'POST') {
@@ -30,7 +25,6 @@ exports.handler = async (event, context) => {
             return { statusCode: 400, headers, body: 'Message is required' };
         }
 
-        // Initialize Gemini API
         const apiKey = process.env.GEMINI_API_KEY;
         if (!apiKey) {
             console.error('GEMINI_API_KEY is not set');
@@ -41,10 +35,8 @@ exports.handler = async (event, context) => {
             };
         }
 
-        const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+        const ai = new GoogleGenAI({ apiKey });
 
-        // Read the knowledge base
         let knowledgeBase = '';
         try {
             const kbPath = path.resolve(__dirname, '../../chat_knowledge.md');
@@ -57,7 +49,6 @@ exports.handler = async (event, context) => {
             console.error('Error reading knowledge base:', error);
         }
 
-        // System prompt defining the bot's behavior
         const systemPrompt = `Ти - Асистент вступника, привітний помічник приймальної комісії Кафедри військової підготовки Житомирського військового інституту (ЖВІ).
 Твоя мета - відповідати на запитання вступників щодо правил прийому, документів, ВЛК (військово-лікарської комісії), оплати, термінів та умов навчання.
 Якщо тебе питають про щось, що не стосується вступу, військової кафедри або навчання, ввічливо відмовся відповідати, пояснивши, що ти консультуєш лише з питань вступу на військову кафедру ЖВІ.
@@ -69,38 +60,25 @@ ${knowledgeBase}
 ---
 `;
 
-        // Start chat session (fallback for gemini-pro which doesn't support systemInstruction)
-        const chatModel = genAI.getGenerativeModel({ 
-            model: 'gemini-pro'
+        const formattedHistory = (history || []).map(msg => ({
+            role: msg.role === 'user' ? 'user' : 'model',
+            parts: [{ text: msg.text }]
+        }));
+
+        const chat = ai.chats.create({
+            model: 'gemini-2.0-flash',
+            config: {
+                systemInstruction: systemPrompt
+            },
+            history: formattedHistory
         });
 
-        // Format history for Gemini
-        const formattedHistory = (history || []).map((msg, index) => {
-            let text = msg.text;
-            if (index === 0 && msg.role === 'user') {
-                text = `${systemPrompt}\n\nПитання: ${text}`;
-            }
-            return {
-                role: msg.role === 'user' ? 'user' : 'model',
-                parts: [{ text }]
-            };
-        });
-
-        const chat = chatModel.startChat({
-            history: formattedHistory,
-        });
-
-        const fullMessage = (formattedHistory.length === 0) 
-            ? `${systemPrompt}\n\nПитання: ${message}`
-            : message;
-
-        const result = await chat.sendMessage(fullMessage);
-        const responseText = result.response.text();
+        const result = await chat.sendMessage({ message: message });
 
         return {
             statusCode: 200,
             headers,
-            body: JSON.stringify({ reply: responseText })
+            body: JSON.stringify({ reply: result.text })
         };
 
     } catch (error) {
