@@ -628,3 +628,121 @@ function handleHashLinks() {
     // Check hash on page load after components render
     setTimeout(handleHash, 400);
 }
+
+/* =========================================
+   Chatbot Integration Logic
+   ========================================= */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chatbotToggle = document.getElementById('chatbot-toggle');
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotSend = document.getElementById('chatbot-send');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+
+    let chatHistory = [];
+
+    // Toggle Chat Window
+    if (chatbotToggle) {
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('hidden');
+            if (!chatbotWindow.classList.contains('hidden')) {
+                chatbotInput.focus();
+            }
+        });
+    }
+
+    if (chatbotClose) {
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.classList.add('hidden');
+        });
+    }
+
+    // Handle Sending Messages
+    const sendMessage = async () => {
+        const text = chatbotInput.value.trim();
+        if (!text) return;
+
+        // Add user message
+        addMessage(text, 'user');
+        chatbotInput.value = '';
+
+        // Add to history
+        chatHistory.push({ role: 'user', text });
+
+        // Show typing indicator
+        const typingId = showTypingIndicator();
+
+        try {
+            const response = await fetch('/.netlify/functions/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, history: chatHistory })
+            });
+
+            const data = await response.json();
+            removeTypingIndicator(typingId);
+
+            if (data.reply) {
+                addMessage(data.reply, 'bot');
+                chatHistory.push({ role: 'model', text: data.reply });
+            } else if (data.error) {
+                addMessage(`Помилка: ${data.error}`, 'bot');
+            } else {
+                addMessage('Вибачте, виникла невідома помилка.', 'bot');
+            }
+        } catch (error) {
+            removeTypingIndicator(typingId);
+            addMessage('Вибачте, не вдалося з\'єднатися з сервером. Спробуйте пізніше.', 'bot');
+            console.error('Chat error:', error);
+        }
+    };
+
+    if (chatbotSend) {
+        chatbotSend.addEventListener('click', sendMessage);
+    }
+    if (chatbotInput) {
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    }
+
+    // Helpers
+    function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${sender}-message`;
+        
+        // Convert basic markdown
+        let htmlText = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>');
+        
+        msgDiv.innerHTML = htmlText;
+        chatbotMessages.appendChild(msgDiv);
+        scrollToBottom();
+    }
+
+    function showTypingIndicator() {
+        const id = 'typing-' + Date.now();
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'typing-indicator';
+        msgDiv.id = id;
+        msgDiv.innerHTML = '<span></span><span></span><span></span>';
+        chatbotMessages.appendChild(msgDiv);
+        scrollToBottom();
+        return id;
+    }
+
+    function removeTypingIndicator(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+    }
+
+    function scrollToBottom() {
+        if (chatbotMessages) {
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+    }
+});
