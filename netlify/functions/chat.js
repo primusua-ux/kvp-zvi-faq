@@ -66,7 +66,7 @@ ${knowledgeBase}
         }));
 
         const chat = ai.chats.create({
-            model: 'gemini-2.5-flash-lite',
+            model: 'gemini-2.0-flash',
             config: {
                 systemInstruction: systemPrompt
             },
@@ -85,10 +85,7 @@ ${knowledgeBase}
         return {
             statusCode: 200,
             headers,
-            body: JSON.stringify({ 
-                reply: replyText,
-                raw: result
-            })
+            body: JSON.stringify({ reply: replyText })
         };
 
     } catch (error) {
