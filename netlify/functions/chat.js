@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
 
         // Read the knowledge base
         let knowledgeBase = '';
@@ -72,7 +72,7 @@ ${knowledgeBase}
         // Start chat session with system instruction (for Gemini 1.5 Pro/Flash)
         // Note: For gemini-1.5-flash, systemInstruction is supported in getGenerativeModel
         const chatModel = genAI.getGenerativeModel({ 
-            model: 'gemini-1.5-flash',
+            model: 'gemini-1.5-flash-latest',
             systemInstruction: systemPrompt
         });
 
