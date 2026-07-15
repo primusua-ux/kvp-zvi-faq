@@ -66,7 +66,7 @@ ${knowledgeBase}
         }));
 
         const chat = ai.chats.create({
-            model: 'gemini-1.5-flash',
+            model: 'gemini-1.5-flash-8b',
             config: {
                 systemInstruction: systemPrompt
             },
@@ -83,10 +83,21 @@ ${knowledgeBase}
 
     } catch (error) {
         console.error('Error generating response:', error);
+
+        let availableModels = "";
+        try {
+            const apiKey = process.env.GEMINI_API_KEY;
+            const res = await fetch(\`https://generativelanguage.googleapis.com/v1beta/models?key=\${apiKey}\`);
+            const data = await res.json();
+            if (data && data.models) {
+                availableModels = "\\nДоступні моделі: " + data.models.map(m => m.name.replace('models/', '')).join(', ');
+            }
+        } catch(e) {}
+
         return {
             statusCode: 500,
             headers,
-            body: JSON.stringify({ error: 'Помилка при обробці запиту: ' + error.message })
+            body: JSON.stringify({ error: 'Помилка при обробці запиту: ' + error.message + availableModels })
         };
     }
 };
