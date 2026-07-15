@@ -73,7 +73,7 @@ ${knowledgeBase}
             history: formattedHistory
         });
 
-        const result = await chat.sendMessage({ message: message });
+        const result = await chat.sendMessage(message);
 
         return {
             statusCode: 200,
