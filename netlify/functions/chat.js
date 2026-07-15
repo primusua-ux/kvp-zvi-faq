@@ -97,10 +97,10 @@ ${knowledgeBase}
         let availableModels = "";
         try {
             const apiKey = process.env.GEMINI_API_KEY;
-            const res = await fetch(\`https://generativelanguage.googleapis.com/v1beta/models?key=\${apiKey}\`);
+            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
             const data = await res.json();
             if (data && data.models) {
-                availableModels = "\\nДоступні моделі: " + data.models.map(m => m.name.replace('models/', '')).join(', ');
+                availableModels = "\nДоступні моделі: " + data.models.map(m => m.name.replace('models/', '')).join(', ');
             }
         } catch(e) {}
 
