@@ -73,12 +73,22 @@ ${knowledgeBase}
             history: formattedHistory
         });
 
-        const result = await chat.sendMessage(message);
+        const result = await chat.sendMessage({ message: message });
+
+        let replyText = 'Empty text';
+        if (result.text) {
+            replyText = typeof result.text === 'function' ? result.text() : result.text;
+        } else if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
+            replyText = result.candidates[0].content.parts[0].text;
+        }
 
         return {
             statusCode: 200,
             headers,
-            body: JSON.stringify({ reply: result.text })
+            body: JSON.stringify({ 
+                reply: replyText,
+                raw: result
+            })
         };
 
     } catch (error) {
@@ -94,10 +104,15 @@ ${knowledgeBase}
             }
         } catch(e) {}
 
+        let errorDetails = error.message;
+        if (!errorDetails) {
+            try { errorDetails = JSON.stringify(error); } catch(e) { errorDetails = 'Невідомий формат помилки'; }
+        }
+
         return {
             statusCode: 500,
             headers,
-            body: JSON.stringify({ error: 'Помилка при обробці запиту: ' + error.message + availableModels })
+            body: JSON.stringify({ error: 'Помилка при обробці запиту: ' + errorDetails + availableModels })
         };
     }
 };

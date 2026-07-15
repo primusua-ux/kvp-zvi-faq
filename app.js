@@ -690,7 +690,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (data.error) {
                 addMessage(`Помилка: ${data.error}`, 'bot');
             } else {
-                addMessage('Вибачте, виникла невідома помилка.', 'bot');
+                addMessage(`Вибачте, виникла невідома помилка. Деталі: ${JSON.stringify(data)}`, 'bot');
             }
         } catch (error) {
             removeTypingIndicator(typingId);
