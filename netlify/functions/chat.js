@@ -42,7 +42,7 @@ exports.handler = async (event, context) => {
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
         // Read the knowledge base
         let knowledgeBase = '';
@@ -69,25 +69,32 @@ ${knowledgeBase}
 ---
 `;
 
-        // Start chat session with system instruction (for Gemini 1.5 Pro/Flash)
-        // Note: For gemini-1.5-flash, systemInstruction is supported in getGenerativeModel
+        // Start chat session (fallback for gemini-pro which doesn't support systemInstruction)
         const chatModel = genAI.getGenerativeModel({ 
-            model: 'gemini-1.5-flash-latest',
-            systemInstruction: systemPrompt
+            model: 'gemini-pro'
         });
 
         // Format history for Gemini
-        // Gemini expects role to be 'user' or 'model'
-        const formattedHistory = (history || []).map(msg => ({
-            role: msg.role === 'user' ? 'user' : 'model',
-            parts: [{ text: msg.text }]
-        }));
+        const formattedHistory = (history || []).map((msg, index) => {
+            let text = msg.text;
+            if (index === 0 && msg.role === 'user') {
+                text = `${systemPrompt}\n\nПитання: ${text}`;
+            }
+            return {
+                role: msg.role === 'user' ? 'user' : 'model',
+                parts: [{ text }]
+            };
+        });
 
         const chat = chatModel.startChat({
             history: formattedHistory,
         });
 
-        const result = await chat.sendMessage(message);
+        const fullMessage = (formattedHistory.length === 0) 
+            ? `${systemPrompt}\n\nПитання: ${message}`
+            : message;
+
+        const result = await chat.sendMessage(fullMessage);
         const responseText = result.response.text();
 
         return {
