@@ -2,6 +2,24 @@ const { GoogleGenAI } = require('@google/genai');
 const fs = require('fs');
 const path = require('path');
 
+// Google occasionally returns 503 "high demand" during load spikes and explicitly
+// recommends retrying - ponytail: 2 short linear-backoff retries, not a queue/library.
+function isRetryableError(error) {
+    const msg = String((error && error.message) || error || '');
+    return msg.includes('"code":503') || msg.includes('UNAVAILABLE') || msg.includes('overloaded');
+}
+
+async function sendWithRetry(chat, message, maxRetries = 2) {
+    for (let attempt = 0; ; attempt++) {
+        try {
+            return await chat.sendMessage({ message });
+        } catch (error) {
+            if (attempt >= maxRetries || !isRetryableError(error)) throw error;
+            await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+        }
+    }
+}
+
 exports.handler = async (event, context) => {
     // Enable CORS
     const headers = {
@@ -79,7 +97,7 @@ ${knowledgeBase}
             history: formattedHistory
         });
 
-        const result = await chat.sendMessage({ message: message });
+        const result = await sendWithRetry(chat, message);
 
         let replyText = 'Empty text';
         if (result.text) {
