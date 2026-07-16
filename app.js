@@ -712,16 +712,27 @@ document.addEventListener('DOMContentLoaded', () => {
     function addMessage(text, sender) {
         const msgDiv = document.createElement('div');
         msgDiv.className = `message ${sender}-message`;
-        
+
         // Convert basic markdown
         let htmlText = text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/\n/g, '<br>');
-        
+
         msgDiv.innerHTML = htmlText;
         chatbotMessages.appendChild(msgDiv);
-        scrollToBottom();
+
+        // User's question stays pinned to the top so the answer below is read from its start,
+        // instead of auto-scrolling to the bottom of a (possibly long) answer.
+        if (sender === 'user') {
+            scrollMessageToTop(msgDiv);
+        }
+    }
+
+    function scrollMessageToTop(msgDiv) {
+        if (!chatbotMessages) return;
+        const delta = msgDiv.getBoundingClientRect().top - chatbotMessages.getBoundingClientRect().top;
+        chatbotMessages.scrollTop += delta;
     }
 
     function showTypingIndicator() {
@@ -731,18 +742,11 @@ document.addEventListener('DOMContentLoaded', () => {
         msgDiv.id = id;
         msgDiv.innerHTML = '<span></span><span></span><span></span>';
         chatbotMessages.appendChild(msgDiv);
-        scrollToBottom();
         return id;
     }
 
     function removeTypingIndicator(id) {
         const el = document.getElementById(id);
         if (el) el.remove();
-    }
-
-    function scrollToBottom() {
-        if (chatbotMessages) {
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
     }
 });

@@ -56,6 +56,9 @@
     --color-text-bright: #f3f5f4;
     --color-text-regular: #cbd3ce;
     --color-text-muted: #8c9790;
+    --color-gold-dark: var(--color-gold);
+    --color-dark-main: var(--color-bg-dark);
+    --color-text-light: var(--color-text-bright);
     --font-primary: 'UAF Sans', 'Outfit', sans-serif;
     --font-secondary: 'UAF Sans', 'Playfair Display', serif;
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -68,6 +71,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {
