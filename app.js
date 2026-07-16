@@ -642,6 +642,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatbotMessages = document.getElementById('chatbot-messages');
 
     let chatHistory = [];
+    let scrollSpacer = null;
 
     // Toggle Chat Window
     if (chatbotToggle) {
@@ -720,12 +721,41 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/\n/g, '<br>');
 
         msgDiv.innerHTML = htmlText;
-        chatbotMessages.appendChild(msgDiv);
+        appendToMessages(msgDiv);
 
         // User's question stays pinned to the top so the answer below is read from its start,
         // instead of auto-scrolling to the bottom of a (possibly long) answer.
         if (sender === 'user') {
+            addScrollSpacer();
             scrollMessageToTop(msgDiv);
+        } else {
+            removeScrollSpacer();
+        }
+    }
+
+    // Inserts before the scroll spacer (if any) so new content doesn't land below the reserved gap.
+    function appendToMessages(node) {
+        if (scrollSpacer) {
+            chatbotMessages.insertBefore(node, scrollSpacer);
+        } else {
+            chatbotMessages.appendChild(node);
+        }
+    }
+
+    // Reserves blank space below a just-sent question so the browser has room to scroll it
+    // all the way to the top even before the (taller) answer exists to scroll against.
+    function addScrollSpacer() {
+        removeScrollSpacer();
+        scrollSpacer = document.createElement('div');
+        scrollSpacer.setAttribute('aria-hidden', 'true');
+        scrollSpacer.style.height = chatbotMessages.clientHeight + 'px';
+        chatbotMessages.appendChild(scrollSpacer);
+    }
+
+    function removeScrollSpacer() {
+        if (scrollSpacer) {
+            scrollSpacer.remove();
+            scrollSpacer = null;
         }
     }
 
@@ -741,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
         msgDiv.className = 'typing-indicator';
         msgDiv.id = id;
         msgDiv.innerHTML = '<span></span><span></span><span></span>';
-        chatbotMessages.appendChild(msgDiv);
+        appendToMessages(msgDiv);
         return id;
     }
 
