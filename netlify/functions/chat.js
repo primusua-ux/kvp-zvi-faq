@@ -66,7 +66,7 @@ ${knowledgeBase}
         }));
 
         const chat = ai.chats.create({
-            model: 'gemini-2.0-flash',
+            model: 'gemini-flash-latest',
             config: {
                 systemInstruction: systemPrompt
             },
