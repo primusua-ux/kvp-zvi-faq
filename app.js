@@ -660,6 +660,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Close when clicking anywhere outside the widget
+    document.addEventListener('click', (e) => {
+        if (!chatbotWindow.classList.contains('hidden') &&
+            !chatbotWindow.contains(e.target) &&
+            !chatbotToggle.contains(e.target)) {
+            chatbotWindow.classList.add('hidden');
+        }
+    });
+
     // Handle Sending Messages
     const sendMessage = async () => {
         const text = chatbotInput.value.trim();
