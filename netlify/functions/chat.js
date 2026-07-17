@@ -3,21 +3,44 @@ const fs = require('fs');
 const path = require('path');
 
 // Google occasionally returns 503 "high demand" during load spikes and explicitly
-// recommends retrying - ponytail: 2 short linear-backoff retries, not a queue/library.
+// recommends retrying. A sustained spike can outlast a same-model retry, so after
+// one retry we fall back to a second model with its own separate capacity pool.
+// ponytail: fixed 2-model list, not a config option - add a third only if this pair
+// also proves insufficient.
+const MODEL_CANDIDATES = ['gemini-flash-latest', 'gemini-flash-lite-latest'];
+
 function isRetryableError(error) {
     const msg = String((error && error.message) || error || '');
     return msg.includes('"code":503') || msg.includes('UNAVAILABLE') || msg.includes('overloaded');
 }
 
-async function sendWithRetry(chat, message, maxRetries = 2) {
+async function sendWithRetry(chat, message, maxRetries = 1) {
     for (let attempt = 0; ; attempt++) {
         try {
             return await chat.sendMessage({ message });
         } catch (error) {
             if (attempt >= maxRetries || !isRetryableError(error)) throw error;
-            await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1)));
+            await new Promise(resolve => setTimeout(resolve, 800));
         }
     }
+}
+
+async function sendWithFallback(ai, systemPrompt, formattedHistory, message) {
+    let lastError;
+    for (const model of MODEL_CANDIDATES) {
+        const chat = ai.chats.create({
+            model,
+            config: { systemInstruction: systemPrompt },
+            history: formattedHistory
+        });
+        try {
+            return await sendWithRetry(chat, message);
+        } catch (error) {
+            if (!isRetryableError(error)) throw error;
+            lastError = error;
+        }
+    }
+    throw lastError;
 }
 
 exports.handler = async (event, context) => {
@@ -89,15 +112,7 @@ ${knowledgeBase}
             parts: [{ text: msg.text }]
         }));
 
-        const chat = ai.chats.create({
-            model: 'gemini-flash-latest',
-            config: {
-                systemInstruction: systemPrompt
-            },
-            history: formattedHistory
-        });
-
-        const result = await sendWithRetry(chat, message);
+        const result = await sendWithFallback(ai, systemPrompt, formattedHistory, message);
 
         let replyText = 'Empty text';
         if (result.text) {
