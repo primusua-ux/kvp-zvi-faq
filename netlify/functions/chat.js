@@ -9,15 +9,34 @@ const path = require('path');
 // also proves insufficient.
 const MODEL_CANDIDATES = ['gemini-flash-latest', 'gemini-flash-lite-latest'];
 
+// A hung Gemini call used to block the whole function with no time limit, so a slow
+// response burned the entire Netlify execution budget on one model instead of giving
+// the fallback model a chance. Each attempt now gets its own budget instead.
+// ponytail: fixed 8s per attempt, no retry on timeout (only on a fast 503) - raise if
+// legitimate answers start getting cut off.
+const CALL_TIMEOUT_MS = 8000;
+
 function isRetryableError(error) {
     const msg = String((error && error.message) || error || '');
     return msg.includes('"code":503') || msg.includes('UNAVAILABLE') || msg.includes('overloaded');
 }
 
+function isTimeoutError(error) {
+    return error && error.message === 'TIMEOUT';
+}
+
+function withTimeout(promise, ms) {
+    promise.catch(() => {});
+    return Promise.race([
+        promise,
+        new Promise((_, reject) => setTimeout(() => reject(new Error('TIMEOUT')), ms))
+    ]);
+}
+
 async function sendWithRetry(chat, message, maxRetries = 1) {
     for (let attempt = 0; ; attempt++) {
         try {
-            return await chat.sendMessage({ message });
+            return await withTimeout(chat.sendMessage({ message }), CALL_TIMEOUT_MS);
         } catch (error) {
             if (attempt >= maxRetries || !isRetryableError(error)) throw error;
             await new Promise(resolve => setTimeout(resolve, 800));
@@ -36,7 +55,7 @@ async function sendWithFallback(ai, systemPrompt, formattedHistory, message) {
         try {
             return await sendWithRetry(chat, message);
         } catch (error) {
-            if (!isRetryableError(error)) throw error;
+            if (!isRetryableError(error) && !isTimeoutError(error)) throw error;
             lastError = error;
         }
     }
