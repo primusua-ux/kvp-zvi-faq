@@ -46,7 +46,7 @@ function updateCopy() {
     if (currentAudience === "civilian") {
         roadmapLead.textContent = "Ваш план як цивільного громадянина - від документів до зарахування.";
         faqLead.textContent = "Питання, які стосуються саме вас як цивільного вступника.";
-        checklistTitle.textContent = "Перелік документів для особової справи";
+        checklistTitle.textContent = "Перелік документів для особової справи (тільки для цивільних громадян)";
         checklistDesc.textContent = "Позначте документи, які вже підготували, та роздрукуйте перелік для відправки в інститут після отримання довідки ВЛК.";
         checklistCopyReqs.style.display = "";
         printDocTitle.textContent = "Список документів, які надаються для особової справи";
