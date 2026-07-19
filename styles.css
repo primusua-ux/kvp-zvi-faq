@@ -357,9 +357,9 @@ body {
 .persona-card.active::after {
     content: '✓';
     position: absolute;
-    top: 12px;
+    top: 8px;
     right: 14px;
-    font-size: 14px;
+    font-size: 42px;
     font-weight: 700;
     color: var(--color-gold);
 }
@@ -380,50 +380,6 @@ body {
 }
 
 .persona-reset-row button:hover { color: var(--color-text-bright); }
-
-/* Sticky audience bar (appears once a persona is chosen) */
-.audience-bar {
-    position: sticky;
-    top: 97px;
-    z-index: 90;
-    display: none;
-    justify-content: center;
-    padding: 10px 0;
-    background: rgba(15, 17, 16, 0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--color-border);
-}
-
-body.has-audience .audience-bar { display: flex; }
-
-.audience-bar-inner {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.audience-pill {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 30px;
-    padding: 6px 14px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--color-text-regular);
-    cursor: pointer;
-    transition: var(--transition-smooth);
-}
-
-.audience-pill.active {
-    background: linear-gradient(135deg, var(--color-olive-medium) 0%, var(--color-olive-dark) 100%);
-    border-color: var(--color-gold);
-    color: var(--color-gold-light);
-    box-shadow: 0 0 10px var(--color-gold-glow);
-}
-
-.audience-pill:hover { border-color: var(--color-border-hover); color: var(--color-text-bright); }
 
 /* Audience badges used on cards / FAQ items when comparing both */
 .audience-badge {
@@ -920,7 +876,6 @@ body.has-audience .audience-bar { display: flex; }
     .logo-area { flex-direction: row; gap: 10px; align-items: center; }
     .institute-logo, .inst-sub, .inst-program { display: none; }
     .inst-main { font-size: 15px; line-height: 1.2; }
-    .audience-bar { top: 61px; }
     .checklist-card { top: 0; }
 }
 
@@ -928,7 +883,7 @@ body.has-audience .audience-bar { display: flex; }
 @media print {
     @page { margin: 20mm 20mm 20mm 30mm; }
     body { background: #ffffff !important; color: #000000 !important; font-size: 12pt; }
-    .bg-grid-overlay, .bg-radial-glow, .no-print, header, footer, .hero-section, .persona-section, .audience-bar, .facts-section, .roadmap-section, .timeline-section, .faq-area { display: none !important; }
+    .bg-grid-overlay, .bg-radial-glow, .no-print, header, footer, .hero-section, .persona-section, .facts-section, .roadmap-section, .timeline-section, .faq-area { display: none !important; }
     .main-content { display: block; padding: 0; margin: 0; }
     .checklist-area { width: 100% !important; }
     .checklist-card { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; position: static !important; backdrop-filter: none !important; }

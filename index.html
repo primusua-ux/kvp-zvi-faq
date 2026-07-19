@@ -44,16 +44,6 @@
         </div>
     </header>
 
-    <!-- Sticky audience switcher (shown after a persona is chosen) -->
-    <div class="audience-bar no-print" id="audience-bar">
-        <div class="container audience-bar-inner">
-            <span style="font-size:12.5px; color: var(--color-text-muted);">Ваш статус:</span>
-            <button class="audience-pill" data-set-audience="civilian">Цивільний громадянин</button>
-            <button class="audience-pill" data-set-audience="military">Військовослужбовець</button>
-            <button class="audience-pill" data-set-audience="all">Показати все (порівняти)</button>
-        </div>
-    </div>
-
     <!-- Hero -->
     <section class="hero-section container no-print">
         <h1 class="hero-title">Довідник вступника</h1>
@@ -84,7 +74,7 @@
                 </span>
                 <span class="persona-chips">
                     <span class="audience-badge badge-military">Без ВЛК</span>
-                    <span class="audience-badge badge-military">Рапорт від командира</span>
+                    <span class="audience-badge badge-military">Рапорт на дозвіл командира</span>
                 </span>
             </button>
         </div>
@@ -130,7 +120,7 @@
     </section>
 
     <!-- Timeline Section (common to everyone) -->
-    <section class="timeline-section container no-print">
+    <section class="timeline-section container no-print" id="timeline-section">
         <h2 class="section-title">Графік навчального процесу</h2>
         <p class="section-lead" id="timeline-lead">Однаковий для всіх вступників, незалежно від статусу.</p>
         <div class="timeline-container">
