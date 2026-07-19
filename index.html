@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ Вступника | Військова кафедра ЖВІ</title>
-    <meta name="description" content="Поширені питання та відповіді для вступників на кафедру військової підготовки Житомирського військового інституту імені С. П. Корольова. Детальна інформація про документи, ВЛК, навчання та оплату.">
+    <title>Довідник вступника | Військова кафедра ЖВІ</title>
+    <meta name="description" content="Покроковий довідник для вступників на кафедру військової підготовки ЖВІ ім. С. П. Корольова - окремо для цивільних громадян і для військовослужбовців: документи, ВЛК, оплата, терміни.">
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Довідник вступника | Кафедра військової підготовки ЖВІ">
-    <meta property="og:description" content="Усе, що потрібно знати для вступу та навчання на кафедрі військової підготовки: документи, ВЛК, організація навчання, оплата, збори, звання.">
+    <meta property="og:description" content="Усе, що потрібно знати для вступу та навчання на кафедрі військової підготовки - окремо для цивільних і для військовослужбовців.">
     <meta property="og:image" content="og_preview.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -19,16 +19,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Background overlay for depth -->
     <div class="bg-grid-overlay"></div>
     <div class="bg-radial-glow"></div>
 
-    <!-- Header Section -->
+    <!-- Header -->
     <header class="main-header no-print">
         <div class="container header-container">
             <div class="logo-area">
@@ -45,12 +44,67 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Sticky audience switcher (shown after a persona is chosen) -->
+    <div class="audience-bar no-print" id="audience-bar">
+        <div class="container audience-bar-inner">
+            <span style="font-size:12.5px; color: var(--color-text-muted);">Ваш статус:</span>
+            <button class="audience-pill" data-set-audience="civilian">Цивільний громадянин</button>
+            <button class="audience-pill" data-set-audience="military">Військовослужбовець</button>
+            <button class="audience-pill" data-set-audience="all">Показати все (порівняти)</button>
+        </div>
+    </div>
+
+    <!-- Hero -->
     <section class="hero-section container no-print">
         <h1 class="hero-title">Довідник вступника</h1>
-        <p class="hero-subtitle">Усе, що потрібно знати для успішного вступу та навчання на військовій кафедрі — <span class="hero-alert-badge">прочитайте ВСЕ уважно!</span></p>
-        
-        <!-- WhatsApp Channel Announcement -->
+        <p class="hero-subtitle">Оберіть свій статус нижче - і побачите лише ті кроки, документи й терміни, які стосуються саме вас.</p>
+    </section>
+
+    <!-- Persona Switcher -->
+    <section class="persona-section container no-print" id="persona-section">
+        <div class="persona-grid">
+            <button class="persona-card persona-civilian" data-set-audience="civilian">
+                <span class="persona-card-head">
+                    <span class="persona-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </span>
+                    <h3>Я цивільний громадянин</h3>
+                </span>
+                <span class="persona-chips">
+                    <span class="audience-badge badge-civilian">Потрібна ВЛК</span>
+                    <span class="audience-badge badge-civilian">Повний пакет документів</span>
+                </span>
+            </button>
+            <button class="persona-card persona-military" data-set-audience="military">
+                <span class="persona-card-head">
+                    <span class="persona-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"></path></svg>
+                    </span>
+                    <h3>Я військовослужбовець</h3>
+                </span>
+                <span class="persona-chips">
+                    <span class="audience-badge badge-military">Без ВЛК</span>
+                    <span class="audience-badge badge-military">Рапорт від командира</span>
+                </span>
+            </button>
+        </div>
+        <div class="persona-reset-row">
+            <button data-set-audience="all">Показати обидва варіанти (порівняти)</button>
+        </div>
+    </section>
+
+    <!-- Facts strip (common to everyone) -->
+    <section class="facts-section container no-print">
+        <div class="facts-grid">
+            <div class="fact-tile"><div class="fact-value">4 місяці</div><div class="fact-label">Тривалість курсу</div></div>
+            <div class="fact-tile"><div class="fact-value">44 800 грн</div><div class="fact-label">Вартість програми</div></div>
+            <div class="fact-tile"><div class="fact-value">15 серпня</div><div class="fact-label">Кінець прийому документів</div></div>
+            <div class="fact-tile"><div class="fact-value">1 вересня</div><div class="fact-label">Початок навчання</div></div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Channel Announcement -->
+    <section class="container no-print">
         <div class="whatsapp-banner">
             <div class="wa-icon-wrapper">
                 <svg class="wa-svg-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -63,107 +117,52 @@
             </div>
             <a href="https://whatsapp.com/channel/0029VbDJBKm3gvWSbK5bLq0m" class="wa-btn" target="_blank" rel="noopener">
                 <span>Підписатися</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="wa-btn-arrow">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="wa-btn-arrow"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
         </div>
     </section>
 
-    <!-- Roadmap Section -->
+    <!-- Roadmap Section (audience-specific) -->
     <section class="roadmap-section container no-print">
-        <h2 class="section-title">Етапи вступу крок за кроком</h2>
-        <div class="roadmap-grid">
-            <div class="roadmap-card">
-                <div class="roadmap-step">1</div>
-                <div class="roadmap-content">
-                    <h3>Підготовка документів</h3>
-                    <p>Підготувати документи в електронному вигляді відповідно до вказівок на сайті:</p>
-                    <ul style="margin-top: 6px; padding-left: 20px; list-style-type: disc;">
-                        <li><a href="#faq-military-algorithm" style="color: var(--color-gold-light); text-decoration: underline;">військовослужбовцям</a></li>
-                        <li><a href="#faq-civilian-algorithm" style="color: var(--color-gold-light); text-decoration: underline;">цивільним громадянам</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="roadmap-card">
-                <div class="roadmap-step">2</div>
-                <div class="roadmap-content">
-                    <h3>Реєстрація</h3>
-                    <p>Пройти реєстрацію на сайті (<a href="https://sites.google.com/view/kvpzvi/" class="step-link" target="_blank" rel="noopener">посилання</a>).</p>
-                </div>
-            </div>
-            <div class="roadmap-card">
-                <div class="roadmap-step">3</div>
-                <div class="roadmap-content">
-                    <h3>Психологічне тестування</h3>
-                    <p>Пройти психологічне тестування на сайті (<a href="https://sites.google.com/view/kvpzvi/" class="step-link" target="_blank" rel="noopener">посилання</a>).</p>
-                </div>
-            </div>
-            <div class="roadmap-card">
-                <div class="roadmap-step">4</div>
-                <div class="roadmap-content">
-                    <h3>Тест "Захист України"</h3>
-                    <p>Скласти тест з "Захисту України" на сайті (<a href="https://sites.google.com/view/kvpzvi/" class="step-link" target="_blank" rel="noopener">посилання</a>) — <em>тільки для тих, хто не має досвіду служби</em>.</p>
-                </div>
-            </div>
-            <div class="roadmap-card">
-                <div class="roadmap-step">5</div>
-                <div class="roadmap-content">
-                    <h3>Проходження ВЛК</h3>
-                    <p>Пройти військово-лікарську комісію відповідно до наданого нами направлення (військовослужбовцям не потрібно).</p>
-                </div>
-            </div>
-            <div class="roadmap-card">
-                <div class="roadmap-step">6</div>
-                <div class="roadmap-content">
-                    <h3>Надсилання документів</h3>
-                    <p>Надіслати в інститут оригінал та копію довідки ВЛК разом з іншими <a href="#faq-5" style="color: var(--color-gold-light); text-decoration: underline;">документами</a>.</p>
-                </div>
-            </div>
-            <div class="roadmap-card">
-                <div class="roadmap-step">7</div>
-                <div class="roadmap-content">
-                    <h3>Зарахування та оплата</h3>
-                    <p>Отримати повідомлення про зарахування і сплатити за навчання за наданими реквізитами протягом двох тижнів. Вартість навчання: <strong>44 800 грн. за всю програму</strong>.</p>
-                </div>
-            </div>
-        </div>
+        <h2 class="section-title" id="roadmap-title">Ваші кроки вступу</h2>
+        <p class="section-lead" id="roadmap-lead">Оберіть статус вище, щоб побачити персональний покроковий план. Нижче - загальний огляд для обох категорій.</p>
+        <div class="roadmap-grid" id="roadmap-grid"></div>
     </section>
 
-    <!-- Timeline Section -->
+    <!-- Timeline Section (common to everyone) -->
     <section class="timeline-section container no-print">
         <h2 class="section-title">Графік навчального процесу</h2>
+        <p class="section-lead" id="timeline-lead">Однаковий для всіх вступників, незалежно від статусу.</p>
         <div class="timeline-container">
             <div class="timeline-line"></div>
             <div class="timeline-item">
                 <div class="timeline-badge">1</div>
                 <div class="timeline-content">
                     <span class="timeline-format">Дистанційно (2 місяці)</span>
-                    <h3>Базова підготовка (L1A): Теорія</h3>
-                    <p>Вивчення теоретичних питань базової загальновійськової підготовки.</p>
+                    <h3>Базовий курс тактичного рівня (L1A): Теорія</h3>
+                    <p>Вивчення теоретичних питань базового курсу підготовки офіцера тактичного рівня.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-badge">2</div>
                 <div class="timeline-content">
                     <span class="timeline-format format-offline">Очно в інституті (1 тиждень)</span>
-                    <h3>Базова підготовка: Практика</h3>
-                    <p>Практичні заняття з питань базової загальновійськової підготовки в інституті.</p>
+                    <h3>Базовий курс тактичного рівня (L1A): Практика. Навчальний збір.</h3>
+                    <p>Практичні заняття базового курсу підготовки офіцера тактичного рівня.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-badge">3</div>
                 <div class="timeline-content">
-                    <span class="timeline-format">Дистанційно (1 місяць)</span>
-                    <h3>Теоретична підготовка з фахових дисциплін (L1B)</h3>
-                    <p>Теоретична підготовка з фахових дисциплін за спеціальністю.</p>
+                    <span class="timeline-format">Дистанційно (1 місяць+1 тиждень)</span>
+                    <h3>Фаховий курс тактичного рівня (L1B): Теорія</h3>
+                    <p>Вивчення теоретичних питань фахового курсу підготовки офіцера тактичного рівня за обраною ВОС.</p>
                 </div>
             </div>
             <div class="timeline-item">
                 <div class="timeline-badge">4</div>
                 <div class="timeline-content">
-                    <span class="timeline-format format-offline">Очно в НЦ (~2 тижні)</span>
+                    <span class="timeline-format format-offline">Очно в інституті (16 діб)</span>
                     <h3>Навчальний збір</h3>
                     <p>Навчальний збір очно у навчальному центрі Житомирського військового інституту.</p>
                 </div>
@@ -173,7 +172,7 @@
                 <div class="timeline-content">
                     <span class="timeline-format format-exam">Очно в інституті</span>
                     <h3>Випускний екзамен</h3>
-                    <p>Складання випускного екзамену та складання Військової присяги.</p>
+                    <p id="timeline-final-desc">Складання випускного екзамену. Присягу складають цивільні вступники - військовослужбовці вже склали її раніше.</p>
                 </div>
             </div>
         </div>
@@ -181,269 +180,86 @@
 
     <!-- Main Content Area -->
     <main class="main-content container">
-        
-        <!-- Left Side: FAQ (Categories & List) -->
+
+        <!-- Left Side: FAQ -->
         <section class="faq-area no-print">
             <h2 class="section-title">Часті питання та відповіді</h2>
-            
-            <!-- Search bar -->
+            <p class="section-lead" id="faq-lead">Показані питання відповідають обраному статусу - спільні для всіх плюс ваші персональні.</p>
+
             <div class="search-container">
                 <div class="search-wrapper">
-                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     <input type="text" id="faq-search" placeholder="Шукайте питання за ключовими словами (наприклад: ВЛК, документи, контракт)..." autocomplete="off">
                     <button id="search-clear-btn" class="clear-btn" aria-label="Очистити пошук">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
                 </div>
             </div>
-            
-            <!-- Category Tabs -->
+
             <div class="category-tabs" id="category-tabs">
                 <button class="tab-btn active" data-category="all">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
-                        <path d="M4 6h16M4 12h16M4 18h7"></path>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon"><path d="M4 6h16M4 12h16M4 18h7"></path></svg>
                     <span>Всі питання</span>
                 </button>
                 <button class="tab-btn" data-category="general">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                     <span>Вимоги до кандидатів</span>
                 </button>
                 <button class="tab-btn" data-category="documents">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                    <span>Перелік документів</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>Документи</span>
                 </button>
                 <button class="tab-btn" data-category="vlk">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
                     <span>Медична комісія (ВЛК)</span>
                 </button>
                 <button class="tab-btn" data-category="education">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
-                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                        <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
                     <span>Навчальний процес</span>
                 </button>
                 <button class="tab-btn" data-category="payment">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
-                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                        <line x1="1" y1="10" x2="23" y2="10"></line>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                     <span>Оплата та контракт</span>
                 </button>
                 <button class="tab-btn" data-category="oath">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
                     <span>Збори та Присяга</span>
                 </button>
             </div>
 
-            <!-- FAQ Accordion Wrapper -->
             <div class="faq-list" id="faq-list">
-                <!-- Dynamically populated from JS -->
                 <div class="loading-state">Завантаження запитань...</div>
             </div>
-            
+
             <div id="no-results" class="no-results-state hidden">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    <line x1="8" y1="11" x2="14" y2="11"></line>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
                 <p>Нічого не знайдено за запитом "<span id="search-query-highlight"></span>"</p>
                 <button id="reset-search-btn" class="btn btn-secondary">Скинути фільтр пошуку</button>
             </div>
         </section>
 
-        <!-- Right Side: Document Checklist -->
+        <!-- Right Side: Document Checklist (audience-specific) -->
         <section class="checklist-area">
             <div class="checklist-card">
-                <h2 class="checklist-title">Перелік документів вступника для формування особової справи <span style="font-weight: 400; font-size: 0.9em; opacity: 0.85; display: inline-block;">(військовослужбовцям не потрібно)</span></h2>
-                <p class="checklist-desc no-print">Позначте документи, які ви вже підготували, та роздрукуйте готовий перелік документів для відправки в інститут після отримання довідки ВЛК. (роздрукуйте його, підпишіть і вкладіть у пакет з документами при відправці).</p>
-                
-                <div class="checklist-copy-reqs no-print">
-                    <strong>Загальні вимоги до копій:</strong> формат <strong>А4</strong>, <strong>портретна</strong> орієнтація, друк з одного боку. Поля: <strong>ліве — 30 мм</strong>, верхнє/нижнє — 15 мм, праве — від 10 мм. Документи на копіях розташовувати <strong>вертикально</strong>. Усі записи мають бути читабельними. Не розміщуйте різні документи на одному аркуші — кожен документ друкується на окремому аркуші (аркушах).
+                <h2 class="checklist-title" id="checklist-title">Перелік документів вступника</h2>
+                <p class="checklist-desc no-print" id="checklist-desc">Позначте документи, які ви вже підготували, та роздрукуйте готовий перелік для відправки в інститут.</p>
+
+                <div class="checklist-copy-reqs no-print" id="checklist-copy-reqs">
+                    <strong>Загальні вимоги до копій:</strong> формат <strong>А4</strong>, <strong>портретна</strong> орієнтація, друк з одного боку. Поля: <strong>ліве - 30 мм</strong>, верхнє/нижнє - 15 мм, праве - від 10 мм. Документи розташовувати <strong>вертикально</strong>. Усі записи мають бути читабельними.
                 </div>
-                
+
                 <div class="print-header-only">
                     <h3>Житомирський військовий інститут імені С. П. Корольова</h3>
                     <h4>Кафедра військової підготовки</h4>
-                    <p class="print-doc-title">Список документів, які надаються для особової справи</p>
+                    <p class="print-doc-title" id="print-doc-title">Список документів, які надаються для особової справи</p>
                     <p class="print-date" id="print-date-placeholder"></p>
                 </div>
 
-                <div class="checklist-items" id="checklist-items">
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-application">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Заява на вступ на навчання за цією програмою підготовки офіцерів (написана власноруч) — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-passport">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Ксерокопія паспорта (1, 2 стор.) або ID-картка з двох сторін — <strong>2 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-registration">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Довідка про місце реєстрації — <strong>2 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-inn">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Копія Довідки про присвоєння ідентифікаційного номера (ІПН) — <strong>2 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-birth-cert">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Копія Свідоцтва про народження — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-vlk-orig">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Довідка ВЛК (оригінал) — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-vlk-copy">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Копія довідки ВЛК — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-contract">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Контракт про навчання на військовій кафедрі — <strong>2 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-military-record">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Ксерокопія військового облікового документу (приписне свідоцтво, військовий квиток, Резерв+) — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-photos-small">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Фотокартка у польовій військовій формі одягу ЗСУ (піксель, на формі має бути вказане прізвище) 3х4 см, матові з білим кутом — <strong>6 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-photos-large">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Фотокартка у польовій військовій формі одягу ЗСУ (піксель, на формі має бути вказане прізвище) 9x11 см, глянцеві — <strong>2 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-diploma-certified">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Копія Диплома про вищу освіту з додатками (завірені нотаріально або в деканаті вишу) — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-diploma-ordinary">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Копія Диплома про вищу освіту (незавірена, звичайна) — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-autobiography-handwritten">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Автобіографія написана власноруч (підписана власноруч) — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-autobiography-typed">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Автобіографія друкована (підписана власноруч) — <strong>1 шт.</strong></span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox" data-id="doc-family-certs">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                        <span class="checklist-text">Копії: свідоцтва про шлюб, свідоцтв про народження дітей — <strong>по 1 шт.</strong> (при наявності)</span>
-                    </label>                </div>
-                
+                <div class="checklist-items" id="checklist-items"></div>
+
                 <div class="checklist-footer no-print">
                     <button class="btn btn-primary" id="btn-print-checklist">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
-                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                            <rect x="6" y="14" width="12" height="8"></rect>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
                         <span>Роздрукувати чек-лист</span>
                     </button>
                     <button class="btn btn-link" id="btn-reset-checklist">Очистити всі мітки</button>
@@ -460,7 +276,7 @@
         </section>
     </main>
 
-    <!-- Page Footer -->
+    <!-- Footer -->
     <footer class="main-footer no-print">
         <div class="container footer-container">
             <div class="footer-info">
@@ -472,7 +288,7 @@
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2026 Житомирський військовий інститут імені С. П. Корольова. Всі права захищені.</p>
-                <p class="developer-tag">Слава Україні! Смерть москалям...</p>
+                <p class="developer-tag">Слава Україні!</p>
             </div>
         </div>
     </footer>
@@ -480,27 +296,17 @@
     <!-- Chatbot Widget -->
     <div class="chatbot-container no-print">
         <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Відкрити чат з Асистентом">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chat-icon">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"></path>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chat-icon"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"></path></svg>
         </button>
 
         <div id="chatbot-window" class="chatbot-window hidden">
             <div class="chatbot-header">
                 <div class="chatbot-title">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="bot-icon">
-                        <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
-                        <path d="M4 10h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"></path>
-                        <path d="M8 10v4"></path>
-                        <path d="M16 10v4"></path>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="bot-icon"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path><path d="M4 10h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"></path><path d="M8 10v4"></path><path d="M16 10v4"></path></svg>
                     <span>Асистент вступника</span>
                 </div>
                 <button id="chatbot-close" class="chatbot-close" aria-label="Закрити чат">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
             </div>
             <div id="chatbot-messages" class="chatbot-messages">
@@ -511,23 +317,16 @@
             <div class="chatbot-input-area">
                 <input type="text" id="chatbot-input" placeholder="Напишіть ваше питання..." autocomplete="off">
                 <button id="chatbot-send" class="chatbot-send" aria-label="Надіслати">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- App Script -->
     <script src="app.js"></script>
 
-    <!-- Back to Top Button -->
     <button id="back-to-top" aria-label="Повернутись вгору">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
     </button>
 </body>
 </html>
