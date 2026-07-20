@@ -156,8 +156,8 @@ const checklistCivilian = [
     { id: "doc-photos-large", text: "Фотокартка у польовій військовій формі одягу ЗСУ (піксель, з прізвищем) 9x11 см, глянцеві - <strong>2 шт.</strong>" },
     { id: "doc-diploma-certified", text: "Копія Диплома про вищу освіту з додатками (завірені нотаріально або в деканаті вишу) - <strong>1 шт.</strong>" },
     { id: "doc-diploma-ordinary", text: "Копія Диплома про вищу освіту (незавірена, звичайна) - <strong>1 шт.</strong>" },
-    { id: "doc-autobiography-handwritten", text: "Автобіографія написана власноруч (підписана власноруч) - <strong>1 шт.</strong>" },
-    { id: "doc-autobiography-typed", text: "Автобіографія друкована (підписана власноруч) - <strong>1 шт.</strong>" },
+    { id: "doc-autobiography-handwritten", text: "Автобіографія написана власноруч (підписана власноруч, <a href=\"https://drive.google.com/file/d/1H12hukNztkpkmuQunFl2RT47oskBrnIH/view?usp=sharing\" target=\"_blank\" rel=\"noopener\">зразок</a>) - <strong>1 шт.</strong>" },
+    { id: "doc-autobiography-typed", text: "Автобіографія друкована (підписана власноруч, <a href=\"https://drive.google.com/file/d/1H12hukNztkpkmuQunFl2RT47oskBrnIH/view?usp=sharing\" target=\"_blank\" rel=\"noopener\">зразок</a>) - <strong>1 шт.</strong>" },
     { id: "doc-family-certs", text: "Копії: свідоцтва про шлюб, свідоцтв про народження дітей - <strong>по 1 шт.</strong> (за наявності)" }
 ];
 
@@ -408,8 +408,8 @@ const faqData = [
             <li>Фотокартка у польовій формі ЗСУ (піксель, з прізвищем) 9x11 см, глянцеві - <strong>2 примірники</strong>;</li>
             <li>Копія Диплома з додатками (завірені нотаріально або в деканаті) - <strong>1 примірник</strong>;</li>
             <li>Копія Диплома (незавірена, звичайна) - <strong>1 примірник</strong>;</li>
-            <li>Автобіографія, написана власноруч - <strong>1 примірник</strong>;</li>
-            <li>Автобіографія друкована, підписана власноруч - <strong>1 примірник</strong>;</li>
+            <li>Автобіографія, написана власноруч (<a href="https://drive.google.com/file/d/1H12hukNztkpkmuQunFl2RT47oskBrnIH/view?usp=sharing" target="_blank" rel="noopener">зразок</a>) - <strong>1 примірник</strong>;</li>
+            <li>Автобіографія друкована, підписана власноруч (<a href="https://drive.google.com/file/d/1H12hukNztkpkmuQunFl2RT47oskBrnIH/view?usp=sharing" target="_blank" rel="noopener">зразок</a>) - <strong>1 примірник</strong>;</li>
             <li>Копії свідоцтва про шлюб і свідоцтв про народження дітей - <strong>по 1 примірнику</strong> (за наявності).</li>
         </ol>
         <p>Скористайтеся інтерактивним переліком документів праворуч на цій сторінці, щоб позначати готові довідки та роздрукувати персональний перелік.</p>`
