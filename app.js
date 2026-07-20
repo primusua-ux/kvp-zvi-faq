@@ -23,6 +23,7 @@ function applyAudienceUI() {
     renderChecklist();
     renderFAQ();
     updateCopy();
+    if (currentAudience) animateFacts();
 }
 
 function initAudienceSwitcher() {
@@ -30,6 +31,59 @@ function initAudienceSwitcher() {
         el.addEventListener("click", () => setAudience(el.dataset.setAudience));
     });
     applyAudienceUI();
+}
+
+/* =========================================
+   Facts strip count-up animation (runs once a status is chosen)
+   ========================================= */
+function formatFactNumber(n) {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+function animateFacts() {
+    document.querySelectorAll(".fact-tile").forEach(tile => {
+        const valEl = tile.querySelector(".fact-value");
+        const final = valEl.dataset.final || valEl.textContent.trim();
+        valEl.dataset.final = final;
+
+        const tokens = final.match(/\d+|\D+/g) || [];
+        valEl.innerHTML = "";
+        const parts = tokens.map(tok => {
+            const isDigit = /\d/.test(tok);
+            const span = document.createElement("span");
+            span.className = isDigit ? "fv-num" : "fv-word";
+            span.textContent = isDigit ? formatFactNumber(0) : tok.replace(/^\s+/, " ");
+            valEl.appendChild(span);
+            return { span, tok, isDigit };
+        });
+
+        const duration = 750;
+        const start = performance.now();
+
+        function frame(now) {
+            const t = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - t, 3);
+            parts.forEach(p => {
+                if (p.isDigit) p.span.textContent = formatFactNumber(Math.round(eased * parseInt(p.tok, 10)));
+            });
+            if (t < 1) {
+                requestAnimationFrame(frame);
+            } else {
+                parts.forEach(p => { if (p.isDigit) p.span.textContent = formatFactNumber(parseInt(p.tok, 10)); });
+                tile.classList.add("fact-flash");
+                setTimeout(() => tile.classList.remove("fact-flash"), 450);
+            }
+        }
+        requestAnimationFrame(frame);
+
+        setTimeout(() => {
+            parts.forEach(p => {
+                if (p.isDigit) return;
+                p.span.style.opacity = "1";
+                p.span.style.transform = "translateY(0)";
+            });
+        }, 150);
+    });
 }
 
 // Text that changes depending on chosen audience
