@@ -98,7 +98,7 @@ function updateCopy() {
     const timelineFinalDesc = document.getElementById("timeline-final-desc");
 
     if (currentAudience === "civilian") {
-        roadmapLead.textContent = "Ваш план як цивільного громадянина - від документів до зарахування.";
+        roadmapLead.innerHTML = "Ваш план як цивільного громадянина - від документів до зарахування (<a href=\"#faq-civilian-algorithm\" class=\"step-link\">детально тут</a>).";
         faqLead.textContent = "Питання, які стосуються саме вас як цивільного вступника.";
         checklistTitle.textContent = "Перелік документів для особової справи (тільки для цивільних громадян)";
         checklistDesc.textContent = "Позначте документи, які вже підготували, та роздрукуйте перелік для відправки в інститут після отримання довідки ВЛК.";
@@ -107,7 +107,7 @@ function updateCopy() {
         timelineLead.textContent = "Ваш графік навчання.";
         timelineFinalDesc.textContent = "Складання випускного екзамену та Військової присяги на вірність українському народові.";
     } else if (currentAudience === "military") {
-        roadmapLead.textContent = "Ваш план як військовослужбовця - рапорт з дозволом командира є вашою підставою для вступу.";
+        roadmapLead.innerHTML = "Ваш план як військовослужбовця - рапорт з дозволом командира є вашою підставою для вступу (<a href=\"#faq-military-algorithm\" class=\"step-link\">детально тут</a>).";
         faqLead.textContent = "Питання, які стосуються саме вас як військовослужбовця.";
         checklistTitle.textContent = "Перелік документів для військовослужбовця";
         checklistDesc.textContent = "Це весь пакет документів, який вам потрібен для вступу.";
