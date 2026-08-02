@@ -232,6 +232,11 @@ body {
     margin: 0 auto 0 auto;
 }
 
+.hero-alert {
+    font-weight: 700;
+    color: #ffd500;
+}
+
 /* Section Title (shared) */
 .section-title {
     font-family: var(--font-secondary);
